@@ -52,7 +52,7 @@ var tbnMenu = new Vue({
         colores: function () {
             this.color = !this.color;
         },
-        colorCambio: function (c) {
+        CamColor: function (c) {
             this.bordercolor = c;
             this.color = true;
         },
