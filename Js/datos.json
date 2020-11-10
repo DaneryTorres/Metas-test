@@ -20,7 +20,7 @@
     "colorPg": "#f9d938",
     "porcentajeMeta": "20",
     "Cuenta": 821511,
-    "bgProgres": "assets/Salud.svg"
+    "bgProgres": "https://danerytorres.github.io/Metas-test/assets/Salud.svg"
     },
     {
       "idMeta": 1,
@@ -43,7 +43,7 @@
       "colorPg": "#4accc6",
       "porcentajeMeta": "30",
       "Cuenta": 215416,
-      "bgProgres": "assets/Viaje.svg"
+      "bgProgres": "https://danerytorres.github.io/Metas-test/assets/Viaje.svg"
     },
     {
       "idMeta": 2,
