@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js'></script>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css"
+    integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css"
+    integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.min.js"></script>
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script> -->
+    <!-- <script>
+
+        var nombre = "Danery"
+
+    </script> -->
+
+</head>
+
+<body>
+<!-- <div class="indicadores">
+    <div Class="item si"></div>
+    <div Class="item"></div>
+</div> -->
+    <div class="warp-header">
+
+        <h1>Elije el motivo de tu Ahorro </h1>
+        <p>Ahorra de manera constante y cumple tus sueños.</p>
+
+
+    </div>
+
+    <div class="wrap-content" >
+
+        <div class="metas-cont"  data-toggle="modal" data-target="#nueva"  onclick="cambiIocon('assets/Casa.svg')" >
+            <img src="assets/Casa.svg" />
+            <h5>Casa</h5>
+        </div>
+        <div class="metas-cont" data-toggle="modal" data-target="#nueva" onclick="cambiIocon('assets/Ahorro.svg')"  >
+            <img src="assets/Ahorro.svg" />
+            <h5>Ahorro</h5>
+        </div>
+        <div class="metas-cont" data-toggle="modal" data-target="#nueva"  onclick="cambiIocon('assets/Jubi.svg')">
+            <img src="assets/Jubi.svg" />
+            <h5>Jubilación</h5>
+        </div>
+        <div class="metas-cont" data-toggle="modal" data-target="#nueva"  onclick="cambiIocon('assets/Salud.svg')">
+            <img src="assets/Salud.svg" />
+            <h5>Salud</h5>
+        </div>
+        <div class="metas-cont" data-toggle="modal" data-target="#nueva"  onclick="cambiIocon('assets/Estudio.svg')">
+            <img src="assets/Estudio.svg" />
+            <h5>Estudio</h5>
+        </div>
+        <div class="metas-cont" data-toggle="modal" data-target="#nueva"  onclick="cambiIocon('assets/Viaje.svg')">
+            <img src="assets/Viaje.svg" />
+            <h5>viajes</h5>
+        </div>
+     
+     
+
+
+    </div>
+    
+   <!-- Modal Agregar meta -->
+   <div class="modal fade" id="nueva" tabindex="-1" aria-labelledby="nueva" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="nueva">Nueva Meta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="wrap colore" id="BTNboton">
+                    
+                    <div id="imagenicon" class="imagen-meta" >
+                       
+                     
+
+                    </div>
+                
+                    <div>
+                    <div class="wrap-content-color" @click="colores">
+                       
+                         <i v-bind:class="[(color === false) ? 'fas fa-angle-down':'fas fa-angle-up']"></i>
+                        <div class="blink-1" v-bind:style="{backgroundColor: bordercolor}" id="color"></div>
+                    </div>
+                    <div class="wrap-color-selec " v-if="color==false">
+                        <div class="wrap-color-option" @click="cambioColor('#d7282f')">
+                            <div id="uno" class="color"></div>
+                        </div>
+
+                        <div class="wrap-color-option" @click="cambioColor('#f9d938')">
+                            <div id="dos" class="color"></div>
+                        </div>
+                        <div class="wrap-color-option" @click="cambioColor('#4accc6')">
+                            <div id="tres" class="color"></div>
+                        </div>
+                        <div class="wrap-color-option" @click="cambioColor('#60e8a0')">
+                            <div id="cuatro" class="color"></div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+                <div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="nombre">NOMBRE META</label>
+                            <input type="text"  class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">MONTO</label>
+                            <input type="number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">MONEDA</label>
+                            <select name="" class="form-control">
+                                    <option value="0">Lempiras</option>-
+                                    <option value="1">Dolar</option>-
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">AÑOS</label>
+                            <input type="number" class="form-control">
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-outline-dark" style=" width: 100px; border-radius: 25px;"> <a
+                        class="link" style="text-decoration: none;" href="dashboard.html">Guardar</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+<!-- partial -->
+<script src="js/modal.js"></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script>
+
+var Moda = new Vue({
+    el: '#BTNboton',
+    data: {
+        color: true,
+        bordercolor: '#fff',
+        direcimg: 'assets/Casa.svg',
+        imagenMeta: [
+            { url: 'assets/Ahorro.svg' },
+            { url: 'assets/Casa.svg' },
+            { url: 'assets/Estudio.svg' },
+            { url: 'assets/Jubi.svg' },
+            { url: 'assets/Salud.svg' },
+            { url: 'assets/Viaje.svg' }
+        ]
+        
+    },
+    methods: {
+        colores: function () {
+            this.color = !this.color;
+        },
+        cambioColor: function (c) {
+            this.bordercolor = c;
+            this.color = true;
+        },
+
+    }
+})
+
+function cambiIocon(img){
+    console.log(img);
+    document.getElementById('imagenicon').innerHTML = "<img class='heartbeat'  src="+img+" alt="+img+" >"
+}
+</script>
+
+
+</html>

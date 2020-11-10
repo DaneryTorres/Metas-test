@@ -1,0 +1,96 @@
+// ==============================
+// Responsive breakpoints
+// Cambio responsive IPAD
+
+// ==============================
+ 
+// Usage:
+
+// @include responsive(mobile) {
+// 	font-size: 20px;
+// 	//... all what you want
+// }
+
+$breakpoints: (
+	mobile: 'only screen and (max-width: 599px)',
+	small: 'only screen and (min-width: 600px) and (max-width: 992px)', 
+	Ipad: 'only screen and (min-width: 992px) and (max-width: 1024px) ',
+	IpadPro: 'only screen and (min-device-width: 833px) and (max-device-width: 1195px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: landscape)',
+	IpadProlandscape: 'only screen and (min-device-width: 1024px) and (max-device-width: 1367px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: landscape)',
+	desktop: 'only screen and (min-width: 1680px) and (max-width: 1920px) ',
+    large: 'only screen and (min-width: 1920px) and (max-width: 2048px)',
+    xlarge: 'only screen and (min-width: 2048px) and (max-width: 3840px)',
+    xxlarge: 'only screen and (min-width: 3840px)',
+);
+// (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait) 
+// (min-device-width: 1366px) and (max-device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: landscape)
+@mixin responsive( $point ) {
+	@if $point==mobile {
+		@media #{map-get($breakpoints, mobile)}{
+			@content;
+		}
+	}
+	@if $point==small {
+		@media #{map-get($breakpoints, small)}{
+			@content;
+		}
+	}
+	@if $point==desktop {
+		@media #{map-get($breakpoints, desktop)}{
+			@content;
+		}
+	}
+	@if $point==Ipad {
+		@media #{map-get($breakpoints, Ipad)}{
+			@content;
+		}
+	}
+	@if $point==IpadPro {
+		@media #{map-get($breakpoints, IpadPro)}{
+			@content;
+		}
+	}
+	@if $point==IpadProlandscape {
+		@media #{map-get($breakpoints, IpadProlandscape)}{
+			@content;
+		}
+	}
+		@if $point==large {
+		@media #{map-get($breakpoints, large)}{
+			@content;
+		}
+	}
+	@if $point==xlarge {
+		@media #{map-get($breakpoints, xlarge)}{
+			@content;
+		}
+	}
+	@if $point==xxlarge {
+		@media #{map-get($breakpoints, xxlarge)}{
+			@content;
+		}
+	}
+}
+
+.show-on-mobile {
+	display: none;
+	@include responsive(mobile){
+		display: inline;
+	}
+}
+
+@each $key, $point in $breakpoints {
+	.hide-#{$key} {
+		@include responsive($key){
+			display: none;
+		}
+	}
+}
+
+@each $key, $point in $breakpoints {
+	.show-#{$key} {
+		@include responsive($key){
+			display: inline-block;
+		}
+	}
+}

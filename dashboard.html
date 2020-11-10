@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas-Info</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css"
+        integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css"
+        integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style/dashboard.css">
+    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/main.css">
+
+    <!-- Vue  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="Js/vue.js"></script>
+
+    <!-- <script>
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script> -->
+</head>
+
+<body>
+    <!-- <div class="nav">
+
+</div> -->
+
+    <!-- <div class="indicadores">
+        <div Class="item"></div>
+        <div Class="item si"></div>
+    </div> -->
+
+    <div class="content-dash">
+        <div class="content-uno">
+            <div class="consolidado">
+                <h4>Saldo consolidado</h4>
+                <div id="btnConsolidado" class="cont-saldo-consolidado">
+
+
+
+                    <span v-if="moneda===true">$2,000</span>
+                    <span v-if="moneda===false">L50,000</span>
+                    <!-- <span *ngIf="botones===false">$2100</span> -->
+                    <div class="botones">
+                        <button @click="Lem" v-bind:class="[moneda=== false ? 'btn-m L active': 'btn-m L']">L</button>
+                        <button @click="dolar" v-bind:class="[moneda=== true ?'btn-m D active': 'btn-m D']">$</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listametas">
+                <h4>Mis metas</h4>
+
+                <div id="content-items" class="conte-items">
+
+                    <!-- ==========Aqui va lista de las metas======== -->
+                </div>
+
+            </div>
+        </div>
+        <div class="content-dos">
+            <!-- <div id="btnmenu"  class="menu-cont">
+                <div v-on:click="btnmenu" class="saber" >
+                    Solicitud<i  v-bind:class="[menu=== false?'fas fa-bars': 'fas fa-times']" ></i>  
+                 
+                </div>
+                <div v-if="menu" class="lista-menu">
+                    <ul>
+                        <li>hola</li>
+                        <li>hola</li>
+                        <li>hola</li>
+                        <li>hola</li>
+                    </ul>
+
+                </div>
+              
+            </div> -->
+
+            <div class="cont-inf">
+                <div class="meta-descrop">
+                    <h3 id="MetaTitle">
+                       
+                    </h3>
+
+                    <p id="descripcionMeta">
+
+                    </p>
+
+
+                </div>
+                <div class="cont-monts">
+                    <div class="Monto-contenido">
+                        <label for="">Saldo</label>
+                        <!-- <h2>{{persona.SaldoConsolidado  | currency:'L. ':'symbol':'4.2-2'}}</h2> -->
+                        <h2 id="saldo">
+                          
+                        </h2>
+
+                    </div>
+                    <i class="fas fa-angle-right"></i>
+                    <div class="Monto-contenido">
+                        <label for="">Meta</label>
+                        <!-- <h2>{{persona.meta  | currency:'L. ':'symbol':'4.2-2'}}</h2> -->
+                        <h2 id="deseado">
+                          
+                        </h2>
+
+                    </div>
+                </div>
+
+                <div class="loader-circular">
+                    <div class="barraprogreso " id="imgprogres">
+                        <div id="progre" class="progress mx-auto">
+                            <span class="progress-left">
+                                <span id="color-pro" class="progress-bar " style="border-color: #d6d6d6;"></span>
+                            </span>
+                            <span class="progress-right">
+                                <span id="color-pro2" class="progress-bar" style="border-color:#d6d6d6;"></span>
+                            </span>
+                            <div
+                                class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <p>
+                    <ngb-progrescbar type=""  height="10px"></ngb-progrescbar>
+                </p> -->
+                <div class="numcuenta">
+                    <label>Codigo de cuenta</label>
+                    <div class="cuenta" id="cuenta-info">
+
+                    </div>
+                </div>
+                <!-- <ng-template #tipContent><b>30%</b> de progreso</ng-template> -->
+                <div class="barra">
+                    <div class="progress">
+                        <div class="progress-bar " id="barra" data-toggle="tooltip" data-placement="top"
+                            data-title="Progreso de 25%" role="progressbar" style="width: 0%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="cont-saldo">
+                <div class="cont-saldoo">
+                    <label>Tipo:</label>
+                    <h2 id="tiposaldo">
+                      
+                    </h2>
+                    <!-- <h2>{{persona.MontoMeta  | currency:'L. ':'symbol':'4.2-2'}}</h2> -->
+                    <!-- <h2>{{SaldoConsolidado | currency:'$. ':'symbol':'0.2-2'}}</h2> -->
+                </div>
+                <div class="cont-saldoo">
+
+                    <h2 id="btn-incre">
+                      
+                    </h2>
+
+
+                    <!-- <h2>{{persona.Aporte  | currency:'L. ':'symbol':'4.2-2'}}</h2> -->
+                    <!-- <h2>{{SaldoConsolidado | currency:'$. ':'symbol':'0.2-2'}}</h2> -->
+                </div>
+
+            </div>
+            <div class="cont-saldo bg-saldo">
+                <div class="fechas">
+                    <h6 style="width: 80%; text-align: center;">Fecha Apertura <b id="inicial"
+                            style="color: #d7282f;"></b></h6>
+                </div>
+                <div class="fechas border-fech">
+                    <h6 style="width: 80%; text-align: center;">Fecha Meta <b id="final" style="color: #d7282f;"></b>
+                    </h6>
+                </div>
+                <div class="fechas">
+                    <h6>Dias faltantes <b id="restantes" style="color: #d7282f;"></b></h6>
+                </div>
+            </div>
+
+            <div class="cont-banner">
+                <div class="cajas"
+                    style="background-image: url('https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80');">
+                    <div class="backdrop"></div>
+                    <h3>Incrementa tu aporte</h3>
+                    <button>Incrementar</button>
+                </div>
+                <div class="cajas"
+                    style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');">
+
+                    <div class="backdrop"></div>
+                    <h3>Realiza Aporte Extraordinario</h3>
+                    <button>Aportar</button>
+                </div>
+                <div class="cajas"
+                    style="background-image: url('https://images.unsplash.com/photo-1593642532744-d377ab507dc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="backdrop"></div>
+                    <h3>Genera tu estado de Cuenta</h3>
+                    <button>Generar</button>
+                </div>
+
+                <!-- <h1>Ponle Nombre a tus metas</h1> -->
+                <!-- <h1>Aumeta Tu aporte</h1> -->
+                <!-- <button class="call-toaction">Crear meta</button> -->
+                <!-- <button class="call-toaction">Aportar</button> -->
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <!-- =================modal============== -->
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="Edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar meta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="nombre">lorem</label>
+                                <input type="text"  class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">lorem</label>
+                                <input type="number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">lorem</label>
+                                <select name="" class="form-control">
+                                    <!-- <option value="" *ngFor="let item of Moneda" [value]="item.id">{{item.moneda}}</option>- -->
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">lorem</label>
+                                <input type="years" class="form-control">
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar Edición</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Agregar meta -->
+    <div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="agregar" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agregar">Agregar Meta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="wrap colore" id="BTNboton">
+                        
+                        <div class="imagen-meta" @click="listaicon">
+                           
+                            <img class="heartbeat"  v-bind:src="direcimg" alt="" >
+
+                        </div>
+                        <div class="galeria" v-if="gal==false" >
+                            <!-- el listado de la galeria es inyectado por vue -->
+                            <img v-for="image in imagenMeta" v-bind:src="image.url" @click="updateimg([image.url])" /> 
+                        </div>
+                        <div>
+                        <div class="wrap-content-color" @click="colores">
+                           
+                             <i v-bind:class="[(color === false) ? 'fas fa-angle-down':'fas fa-angle-up']"></i>
+                            <div class="blink-1" v-bind:style="{backgroundColor: bordercolor}" id="color"></div>
+                        </div>
+                        <div class="wrap-color-selec " v-if="color==false">
+                            <div class="wrap-color-option" @click="ColorCambio('#d7282f')">
+                                <div id="uno" class="color"></div>
+                            </div>
+
+                            <div class="wrap-color-option" @click="ColorCambio('#f9d938')">
+                                <div id="dos" class="color"></div>
+                            </div>
+                            <div class="wrap-color-option" @click="ColorCambio('#4accc6')">
+                                <div id="tres" class="color"></div>
+                            </div>
+                            <div class="wrap-color-option" @click="ColorCambio('#60e8a0')">
+                                <div id="cuatro" class="color"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    <div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="nombre">NOMBRE META</label>
+                                <input type="text"  class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">MONTO</label>
+                                <input type="number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">MONEDA</label>
+                                <select name="" class="form-control">
+                                        <option value="0">Lempiras</option>-
+                                        <option value="1">Dolar</option>-
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">AÑOS</label>
+                                <input type="number" class="form-control">
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-outline-dark" style=" width: 100px; border-radius: 25px;"> <a
+                            class="link" style="text-decoration: none;" href="dashboard.html">Save</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="nav">
+
+</div> -->
+
+
+    <script>
+
+
+
+    </script>
+    <script src="js/modal.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/lista-datos.js"></script>
+
+</body>
+
+</html>
