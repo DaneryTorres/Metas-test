@@ -20,7 +20,7 @@
     "colorPg": "#f9d938",
     "porcentajeMeta": "20",
     "Cuenta": 821511,
-    "bgProgres": "../assets/Salud.svg"
+    "bgProgres": "assets/Salud.svg"
     },
     {
       "idMeta": 1,
@@ -43,7 +43,7 @@
       "colorPg": "#4accc6",
       "porcentajeMeta": "30",
       "Cuenta": 215416,
-      "bgProgres": "../../assets/Viaje.svg"
+      "bgProgres": "assets/Viaje.svg"
     },
     {
       "idMeta": 2,
@@ -66,7 +66,7 @@
       "colorPg": "#60e8a0",
       "porcentajeMeta": "40",
       "Cuenta": 864561,
-      "bgProgres": "../assets/Estudio.svg"
+      "bgProgres": "assets/Estudio.svg"
     }
 ]
 
