@@ -43,7 +43,7 @@
       "colorPg": "#4accc6",
       "porcentajeMeta": "30",
       "Cuenta": 215416,
-      "bgProgres": "../assets/Viaje.svg"
+      "bgProgres": "../../assets/Viaje.svg"
     },
     {
       "idMeta": 2,
